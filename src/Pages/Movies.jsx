@@ -1,5 +1,13 @@
+import { Link } from "react-router-dom"
+
 function Movies () {
-    return <h1>Movies page</h1>
+    return (
+        <ul>
+            {
+                
+            }
+        </ul>
+    )
 }
 
 export {Movies}
