@@ -1,15 +1,13 @@
-import {useState} from "react";
-
-function Counter() {
-    const [count, setCount] = useState(0)
-    
-    return (
+import { Header } from "./Header"
+import { ThemeSwitcher } from "./ThemeSwitcher"
+function Searchfield() {
+    return(
         <div>
-            <h2>Cuenta: {count}</h2>
-            <button onClick={}> </button>
+            <Header />
+            <ThemeSwitcher/>
+
         </div>
     )
-
-
-    export default Counter
 }
+
+export default Searchfield

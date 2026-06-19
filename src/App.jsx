@@ -6,11 +6,15 @@ import { About } from './Pages/About'
 import { Home } from './Pages/Home'
 import { Movies } from './Pages/Movies'
 import { CharacterDetail } from './Pages/CharacterDetail'
+import Searchfield from './components/Counter'
+import { ThemeContext } from './context/ThemeContext'
+import { useState } from 'react'
 
 function App() {
- 
+  const [theme, setTheme] = useState('Red')
   return (
-    <div>
+    <ThemeContext value={{theme, setTheme}}>
+      
       <nav>
         <NavLink to="/">Inicio</NavLink> |
         <NavLink to="/movies">Peliculas</NavLink> |
@@ -19,12 +23,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Greetings />}/>
         <Route path="/character/:id" element={<CharacterDetail />}/>
-        <Route path="/characters" element={<Characters />}/>
-        <Route path="/movies" element={<Movies />}/>
+        <Route path="/movies" element={<Characters />}/>
         <Route path="/home" element={<Home />}/>
         <Route path="/about" element={<About/>}/>
+        <Route path="/counter" element={<Searchfield/>}/>
       </Routes>
-    </div>
+    
+    </ThemeContext>
   )
 }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";7
+
 
 function Characters () {
     const[characters, setCharacter] = useState(null)

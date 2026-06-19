@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CharacterDetail () {
     const {id} = useParams();
     const [character, setCharacter] = useState(null);
     const[isloading, setIsLoading] = useState(true);
     const[error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function load() {
@@ -28,6 +30,7 @@ function CharacterDetail () {
     return (
         <div>
             <h2>{character.name}</h2>
+            <button onClick={() => navigate("/")}>Volver</button>
             <img src={character.image} alt={character.name} />
             <p>Estado: {character.status}</p>
             <p>Especie: {character.species}</p>
