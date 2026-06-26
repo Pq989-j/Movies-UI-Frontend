@@ -10,6 +10,8 @@ import { ThemeContext } from './context/ThemeContext'
 import { useState } from 'react'
 import { RegisterForm } from './components/RegisterForm'
 import './index.css'
+import { LoginForm } from './components/LoginForm'
+import { PrivateRoute } from './components/PrivateRoute'
 
 function App() {
   const [theme, setTheme] = useState('Red')
@@ -22,12 +24,15 @@ function App() {
         <NavLink to="/about">Acerca de</NavLink>
       </nav>
       <Routes>
-        <Route path="/register" element={<RegisterForm />}/>
+        <Route path="/auth/register" element={<RegisterForm />}/>
         <Route path="/character/:id" element={<CharacterDetail />}/>
-        <Route path="/movies" element={<Characters />}/>
+        <Route element={<PrivateRoute />}>
+          <Route path="/movies" element={<Characters />}/>
+        </Route>
         <Route path="/" element={<Home />}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/counter" element={<Searchfield/>}/>
+        <Route path="/auth/login" element={<LoginForm/>}></Route>
       </Routes>
     
     </ThemeContext>

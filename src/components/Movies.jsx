@@ -7,6 +7,7 @@ function Characters () {
     const[movies, setMovies] = useState(null)
     const[isloading, setIsloading] = useState(false)
     const[error, setError] = useState(null)
+    const[page] = useState(1)
 
     useEffect(() => {
         async function load() {
@@ -26,7 +27,7 @@ function Characters () {
             }
         }
         load()
-    }, [])
+    }, [page])
 
     if(isloading) return <p>Cargando....</p>
     if(error) return <p>Error: {error}</p>

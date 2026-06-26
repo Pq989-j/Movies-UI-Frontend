@@ -6,3 +6,4 @@ export function useAuth() {
     if(!context)throw new Error("useAuth debe usarse dentro de <Authprovider>")
     return context;
 }
+
