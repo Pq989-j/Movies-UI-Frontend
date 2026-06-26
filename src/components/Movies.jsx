@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";7
+import { Link } from "react-router-dom";
 
+const API = import.meta.env.VITE_API_URL;
 
 function Characters () {
-    const[characters, setCharacter] = useState(null)
+    const[movies, setMovies] = useState(null)
     const[isloading, setIsloading] = useState(false)
     const[error, setError] = useState(null)
-    const[page, setPage] = useState(1)
 
     useEffect(() => {
         async function load() {
             try{
                 setIsloading(true)
                 setError(null)
-                const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
+                const response = await fetch(`${API}/movies`)
                 console.log(response)
-                if(!response.ok) throw new Error("No se pueden cargar personajes")
+                if(!response.ok) throw new Error("No se pueden cargar peliculas")
                 const data = await response.json()
-                setCharacter(data.results)
-                console.log(data.results)
+                console.log(data)
+                setMovies(data)
             }catch(error){
                 setError(error.message)
             }finally{
@@ -26,17 +26,18 @@ function Characters () {
             }
         }
         load()
-    }, [page])
+    }, [])
 
     if(isloading) return <p>Cargando....</p>
     if(error) return <p>Error: {error}</p>
     return (
         <div>
             <ul>
-                {characters?.map((character) => (
+                {movies?.map((movie) => (
                     
-                    <li key={character.id}>
-                        <Link to={`/characters/${character.id}`}>{character.name}</Link>
+                    <li key={movie.id}>
+                        <Link to={`/movies/${movie?.id}`}>{movie?.title}</Link>
+                        <img src={movie.poster} alt={movie.title} />
                     </li>
                 ))}
             </ul>
