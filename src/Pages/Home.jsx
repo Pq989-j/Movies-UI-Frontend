@@ -9,7 +9,7 @@ function Home () {
        
         <p>Aqui encontraras un repertorio de mas de 5000 peliculas de diversos autores a lo largo de mas de 100 años de la historia del cine</p>
         <main>
-            <Link to="/signup">Sign up</Link>
+            <Link to="/register">Sign up</Link>
         </main>
     </div>
     )

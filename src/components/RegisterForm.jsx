@@ -44,13 +44,13 @@ function RegisterForm () {
                 className="rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"/>
                 {errors.name && <span className="text-sm text-red-600">{errors.name} </span>}
             </div>
-            <div className="flex flex col gap-1">
+            <div className="flex flex-col gap-1">
                 <label className="font medium text-white">Email</label>
                 <input type="email" name="email" value={data.email} placeholder="test@example.com" onChange={handleChange}
                 className="rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus_outline-none" />
                 {errors.email && <span className="text-sm text-red-600">{errors.email} </span>}
             </div>
-            <div className="flex flex col gap-1">
+            <div className="flex flex-col gap-1">
                 <label className="font medium text-white">Password</label>
                 <input type="password" name="password" value={data.password} placeholder="******"onChange={handleChange} 
                 className="rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus_outline-none"/>

@@ -8,7 +8,6 @@ import { CharacterDetail } from './Pages/MovieDetail'
 import Searchfield from './components/Counter'
 import { ThemeContext } from './context/ThemeContext'
 import { useState } from 'react'
-import { Register } from './Pages/Signup'
 import { RegisterForm } from './components/RegisterForm'
 import './index.css'
 
@@ -23,8 +22,7 @@ function App() {
         <NavLink to="/about">Acerca de</NavLink>
       </nav>
       <Routes>
-        <Route path="register" element={<RegisterForm />}/>
-        <Route path="/signup" element={<Register/>}/>
+        <Route path="/register" element={<RegisterForm />}/>
         <Route path="/character/:id" element={<CharacterDetail />}/>
         <Route path="/movies" element={<Characters />}/>
         <Route path="/" element={<Home />}/>
