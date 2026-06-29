@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button } from "./Button";
+import { useNavigate } from "react-router-dom";
 
 const API = import.meta.env.VITE_API_URL
 
@@ -16,23 +17,43 @@ const API = import.meta.env.VITE_API_URL
 function RegisterForm () {
     const [data, setData] = useState({email: "", password: ""})
     const [errors, setErrors] = useState({})
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate()
+
 
     function handleChange(e) {
         const {name, value} = e.target
         setData((prev) => ({...prev, [name]: value}))
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
         const foundedErrors = validate(data)
         setErrors(foundedErrors)
         if(foundedErrors.length > 0) return;
+        try{
+            await register(data.email, data.password)
+            navigate("/auth/login")
+        }catch(error){
+            setErrors(error.message)
+        }finally{
+            setIsLoading(false)
+        }
 
     }
 
-
+    async function register(email, password) {
+        const response = await fetch(`${API}/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({ email, password}),
+        })
+        if(!response.ok) throw new Error("Email o contraseña incorrectos")
+        const data = await response.json()
+    }
     return(
-        <form onSubmit={handleSubmit} className="min-inline-20 bg-black mx-auto flex max w-md flex-col gap-4 p-6">
+        
+        <form onSubmit={handleSubmit} className="min-inline-20 bg-black mx-auto flex max w-md flex-col gap-4 p-15">
             <h2 className="flex justify-center text-2xl font bold text-white">Crear Cuenta</h2>
             <div className="flex flex-col gap-1">
                 <label className="font medium text-white">Email</label>

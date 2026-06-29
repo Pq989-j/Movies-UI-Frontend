@@ -1,10 +1,10 @@
 import './App.css'
 import {Greetings} from './components/Greetings'
 import { Routes, Route, NavLink } from "react-router-dom"
-import { Characters } from './components/Movies'
+import { Movies } from './components/Movies'
 import { About } from './Pages/About'
 import { Home } from './Pages/Home'
-import { CharacterDetail } from './Pages/MovieDetail'
+import { MovieDetail } from './Pages/MovieDetail'
 import Searchfield from './components/Counter'
 import { ThemeContext } from './context/ThemeContext'
 import { useState } from 'react'
@@ -18,16 +18,32 @@ function App() {
   return (
     <ThemeContext value={{theme, setTheme}}>
       
-      <nav className="flex justify-center bg-black text-red-100">
-        <NavLink to="/" className="text-3xl" >Inicio</NavLink> |
-        <NavLink to="/movies">Peliculas</NavLink> |
-        <NavLink to="/about">Acerca de</NavLink>
+      <nav className="flex justify-evenly items-center bg-black text-red-100 px-6 py-3">
+        <div className='flex gap-4 items-center text-xl'>
+          <NavLink to="/" className="text-3xl" >Inicio</NavLink> |
+          <NavLink to="/movies">Peliculas</NavLink> |
+          <NavLink to="/about">Acerca de</NavLink>
+        </div>
+        <div className="flex gap-3 w-32 justify-end text-sm">
+          <NavLink 
+            to="/auth/login" 
+            className="hover:text-red-400 transition-colors self-center"
+          >
+            Login
+          </NavLink>
+          <NavLink 
+            to="/auth/register" 
+            className="bg-red-700 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
+          >
+            Registro
+          </NavLink>
+        </div>
       </nav>
       <Routes>
         <Route path="/auth/register" element={<RegisterForm />}/>
-        <Route path="/character/:id" element={<CharacterDetail />}/>
+        <Route path="/movies/:id" element={<MovieDetail />}/>
         <Route element={<PrivateRoute />}>
-          <Route path="/movies" element={<Characters />}/>
+          <Route path="/movies" element={<Movies />}/>
         </Route>
         <Route path="/" element={<Home />}/>
         <Route path="/about" element={<About/>}/>
