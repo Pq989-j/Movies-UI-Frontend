@@ -31,12 +31,18 @@ function MovieDetail () {
     if (isloading) return <p>Esta cargando...</p>
     if (error) return <p>Error: {error}</p>
     return (
-        <div className="bg-zinc-900 rounded-2xl overflow-hidden w-56  h-[390px] ">
-            <h2 className="">{movie.title}</h2>
-            <button onClick={() => navigate(-1)}>Volver</button>
-            <img src={movie.poster} alt={movie.title} />
-            <p>Generos: {movie.genre}</p>
-            <p>director: {movie.director}</p>
+        <div className="flex justify-center h-screen bg-black">
+            <div className=" p-6">
+                <img className="rounded-2xl w-full h-200 object-fill"src={movie?.poster} alt={movie?.title} />
+            </div>
+            <div className="flex flex-col p-6 text-white justify-center align-center">
+                <h2 className="">Titulo: {movie.title}</h2>
+                <p>Generos: {movie.genre}</p> 
+                <p>director: {movie.director}</p>
+                <p>Año de lanzamiento: {movie.release}</p>
+                <button onClick={() => navigate(-1)}>Volver</button>
+            </div>
+
         </div>
     )
     
