@@ -30,7 +30,7 @@ export function AuthProvider({children}) {
             headers: { Authorization: `Bearer ${token}` }
         })
         if(!response.ok) return logout();
-        const {user} = await response.json()
+        const user = await response.json()
         setUser(user)
 
     }

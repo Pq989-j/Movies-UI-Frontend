@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "./Button";
+import { SubmitButton } from "./SubmitButton";
 import { useNavigate } from "react-router-dom";
 
 const API = import.meta.env.VITE_API_URL
@@ -52,25 +52,28 @@ function RegisterForm () {
         const data = await response.json()
     }
     return(
+        <div className="min-h-screen bg-black pt-32">
+            <form onSubmit={handleSubmit} className="rounded-md min-inline-20 mx-auto flex max-w-md flex-col gap-4 p-16 border-2  border-gray-700">
+                <h2 className="flex justify-center text-2xl font-bold text-white">Crear Cuenta</h2>
+                <div className="flex flex-col gap-1">bg-gray-950.
+                    <label className="font-medium text-white">Email</label>
+                    <input type="email" name="email" value={data.email} placeholder="test@example.com" onChange={handleChange}
+                    className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none" />
+                    {errors.email && <span className="text-sm text-red-600">{errors.email} </span>}
+                </div>
+                <div className="flex flex-col gap-1">
+                    <label className="font-medium text-white">Password</label>
+                    <input type="password" name="password" value={data.password} placeholder="******"onChange={handleChange} 
+                    className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"/>
+                    {errors.password && <span>{errors.password} </span>}
+                </div>
+                <div className="flex justify-center">
+                    <SubmitButton />
+                </div>
+            </form>                
+        </div>
         
-        <form onSubmit={handleSubmit} className="min-inline-20 bg-black mx-auto flex max w-md flex-col gap-4 p-15">
-            <h2 className="flex justify-center text-2xl font bold text-white">Crear Cuenta</h2>
-            <div className="flex flex-col gap-1">
-                <label className="font medium text-white">Email</label>
-                <input type="email" name="email" value={data.email} placeholder="test@example.com" onChange={handleChange}
-                className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus_outline-none" />
-                {errors.email && <span className="text-sm text-red-600">{errors.email} </span>}
-            </div>
-            <div className="flex flex-col gap-1">
-                <label className="font medium text-white">Password</label>
-                <input type="password" name="password" value={data.password} placeholder="******"onChange={handleChange} 
-                className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus_outline-none"/>
-                {errors.password && <span>{errors.password} </span>}
-            </div>
-            <div className="flex justify-center">
-                <Button />
-            </div>
-        </form>
+        
     )
 }
 

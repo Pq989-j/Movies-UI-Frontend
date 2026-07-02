@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "./Button";
+import { SubmitButton } from "./SubmitButton";
 import { useAuth } from "../Hooks/UseAuth";
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +23,7 @@ function LoginForm() {
 		setIsLoading(true);
 		try {
 			await login(data.email, data.password);
-            navigate("/movies")
+            navigate("/profile")
 			// aquí, tras loguear, navegarás al área privada (lo cerramos en la próxima clase)
 		} catch (error) {
 			setError(error.message);
@@ -33,23 +33,26 @@ function LoginForm() {
 	}
 
     return(
-        <form onSubmit={handleSubmit} className="min-inline-20 bg-black mx-auto flex max w-md flex-col gap-4 p-6">
-            <h2 className="flex justify-center text-2xl font bold text-white">Login</h2>
-            <div className="flex flex-col gap-1">
-                <label className="font medium text-white">Email</label>
-                <input type="email" name="email" value={data.email} placeholder="test@example.com" onChange={handleChange}
-                className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus_outline-none" />
-            </div>
-            <div className="flex flex-col gap-1">
-                <label className="font medium text-white">Password</label>
-                <input type="password" name="password" value={data.password} placeholder="******"onChange={handleChange} 
-                className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus_outline-none"/>
-            </div>
-            {error && <p className="text-red-600">{error}</p>}
-            <div className="flex justify-center">
-                <Button />
-            </div>
-        </form>
+        <div className="min-h-screen bg-black pt-32">
+            <form onSubmit={handleSubmit} className="rounded-md min-inline-20 mx-auto flex max-w-md flex-col gap-4 p-16 border-2  border-gray-700">
+                <h2 className="flex justify-center text-2xl font-bold text-white">Login</h2>
+                <div className="flex flex-col gap-1">
+                    <label className="font-medium text-white">Email</label>
+                    <input type="email" name="email" value={data.email} placeholder="test@example.com" onChange={handleChange}
+                    className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none" />
+                </div>
+                <div className="flex flex-col gap-1">
+                    <label className="font-medium text-white">Password</label>
+                    <input type="password" name="password" value={data.password} placeholder="******"onChange={handleChange} 
+                    className="text-white rounded border border-gray-300 px-3 py-2 focus:border-blue-500 focus:outline-none"/>
+                </div>
+                {error && <p className="text-red-600">{error}</p>}
+                <div className="flex justify-center">
+                    <SubmitButton />
+                </div>
+            </form>
+        </div>
+        
     )
 }
 export {LoginForm}
